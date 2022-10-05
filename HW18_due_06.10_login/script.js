@@ -29,7 +29,7 @@ function regUser(){
         values.push(newUser)
         localStorage.setItem("User", JSON.stringify(values))
         window.location.href = "index.html"
-    }else{
+    }else{//Добавить тут проверку на наличие юзера уже
         values = JSON.parse(localStorage.getItem("User"))
         values.push(newUser)
         localStorage.setItem("User", JSON.stringify(values))
