@@ -29,29 +29,72 @@ function regUser(){
         values.push(newUser)
         localStorage.setItem("User", JSON.stringify(values))
         window.location.href = "index.html"
-    }else{//Добавить тут проверку на наличие юзера уже
-        values = JSON.parse(localStorage.getItem("User"))
-        values.push(newUser)
-        localStorage.setItem("User", JSON.stringify(values))
-        window.location.href = "index.html"
+    }else{
+        if(JSON.parse(localStorage.getItem("User")).some((obj) => {
+            obj.email === newUser.email
+        })){
+            values = JSON.parse(localStorage.getItem("User"))
+            values.push(newUser)
+            localStorage.setItem("User", JSON.stringify(values))
+            window.location.href = "index.html"
+        }else{
+            alert("Пользователь с таким логином уже есть")
+        }
+
     }
     
 }
 //Логин
 const logEmail = document.querySelector("#loginEmail")
 const logPassword = document.querySelector("#loginPassword")
+const loginremember = document.querySelector("#checkremember")
 
 const login = document.querySelector("#loginButton")
 
-login.addEventListener("click", checkUser)
+if(login){
+    login.addEventListener("click", checkUser)
+}
+
+
 
 function checkUser(){
-    if(JSON.parse(localStorage.getItem("User")).includes(logEmail.value) &&
-    JSON.parse(localStorage.getItem("User")).includes(logPassword.value)){
-        alert('все верно')
-        window.location.href = "main.html"
-    }else{
-        alert('Ошибка')
-    }
+    let currentUser = {email: "", password: 0}
+    currentUser.email = logEmail.value
+    currentUser.password = logPassword.value
+    console.log(currentUser)
+    if(JSON.parse(localStorage.getItem("User")).some((obj) => {
+        obj.email === currentUser.email})){
+            alert("Все верно")
+        }else{
+            alert("Что то не так")
+        }
+    // if(loginremember.checked){
+    //     localStorage.setItem("currentUser", JSON.stringify(currentUser))
+    //     if(JSON.parse(localStorage.getItem("User")).some((obj) => {
+    //         obj.email == JSON.parse(localStorage.getItem("currentUser")).email
+    //     })){
+    //         window.location.href = "main.html"
+    //     }else{
+    //         alert("Вы ввели неправильный логин и пароль")
+    //         //localStorage.clear("currentUser")
+    //     }
+    // }else{
+    //     localStorage.clear("currentUser")
+    //     sessionStorage.setItem("currentUser", JSON.stringify(currentUser))
+    //     if(JSON.parse(localStorage.getItem("User")).some((obj) => {
+    //         obj.email === JSON.parse(sessionStorage.getItem("currentUser")).email
+    //     })){
+    //         window.location.href = "main.html"
+    //     }else{
+    //         alert("Вы ввели неправильный логин и пароль")
+    //         sessionStorage.clear("currentUser")
+    //     }
+    // }
 
+
+}
+//Проверка на автозаполнение после remember
+if(localStorage.getItem("currentUser") !== null){
+    logEmail.value = JSON.parse(localStorage.getItem("currentUser")).email
+    logPassword.value = JSON.parse(localStorage.getItem("currentUser")).password
 }
