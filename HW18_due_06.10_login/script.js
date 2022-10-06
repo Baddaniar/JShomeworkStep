@@ -21,17 +21,22 @@ if(signin){
     signin.addEventListener("click", regUser)
 }
 
-
+//Надо решить вопрос с проверкой через array.some введеных значений и значений в localStorage
 function regUser(){
     let newUser = new User(regEmail.value,regPassword.value,regName.value,regSurname.value,regAge.value)
     let values = []
+    let users = JSON.parse(localStorage.getItem("User"))
     if(localStorage.getItem("User") === null){
         values.push(newUser)
         localStorage.setItem("User", JSON.stringify(values))
         window.location.href = "index.html"
     }else{
-        if(JSON.parse(localStorage.getItem("User")).some((obj) => {
-            obj.email === newUser.email
+        if(users.some(function (obj){
+            if(obj.email == newUser.email){
+                return true
+            }else{
+                return false
+            }
         })){
             values = JSON.parse(localStorage.getItem("User"))
             values.push(newUser)
@@ -57,12 +62,14 @@ if(login){
 
 
 
+
 function checkUser(){
     let currentUser = {email: "", password: 0}
     currentUser.email = logEmail.value
     currentUser.password = logPassword.value
     console.log(currentUser)
-    if(JSON.parse(localStorage.getItem("User")).some((obj) => {
+    let users = JSON.parse(localStorage.getItem("User"))
+    if(users.some((obj) => {
         obj.email === currentUser.email})){
             alert("Все верно")
         }else{
@@ -98,3 +105,6 @@ if(localStorage.getItem("currentUser") !== null){
     logEmail.value = JSON.parse(localStorage.getItem("currentUser")).email
     logPassword.value = JSON.parse(localStorage.getItem("currentUser")).password
 }
+
+//Таблица вроде норм но нужно добавить стили и убрать колонкку пароль
+
