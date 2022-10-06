@@ -21,7 +21,8 @@ if(signin){
     signin.addEventListener("click", regUser)
 }
 
-//Надо решить вопрос с проверкой через array.some введеных значений и значений в localStorage
+
+//функция регистрации юзера
 function regUser(){
     let newUser = new User(regEmail.value,regPassword.value,regName.value,regSurname.value,regAge.value)
     let values = []
@@ -31,19 +32,15 @@ function regUser(){
         localStorage.setItem("User", JSON.stringify(values))
         window.location.href = "index.html"
     }else{
-        if(users.some(function (obj){
-            if(obj.email == newUser.email){
-                return true
-            }else{
-                return false
-            }
-        })){
+        if(users.some(obj =>
+            obj.email === newUser.email
+        )){
+            alert("Пользователь с таким логином уже есть")
+        }else{
             values = JSON.parse(localStorage.getItem("User"))
             values.push(newUser)
             localStorage.setItem("User", JSON.stringify(values))
             window.location.href = "index.html"
-        }else{
-            alert("Пользователь с таким логином уже есть")
         }
 
     }
@@ -62,49 +59,72 @@ if(login){
 
 
 
-
+//Функция проверки юзера при логине
 function checkUser(){
     let currentUser = {email: "", password: 0}
     currentUser.email = logEmail.value
     currentUser.password = logPassword.value
     console.log(currentUser)
     let users = JSON.parse(localStorage.getItem("User"))
-    if(users.some((obj) => {
-        obj.email === currentUser.email})){
-            alert("Все верно")
+    if(loginremember.checked){
+        if(users.some(obj => obj.email == currentUser.email
+        )){
+            localStorage.setItem("currentUser", JSON.stringify(currentUser))
+            window.location.href = "main.html"
         }else{
-            alert("Что то не так")
+            alert("Вы ввели неправильный логин и пароль")
         }
-    // if(loginremember.checked){
-    //     localStorage.setItem("currentUser", JSON.stringify(currentUser))
-    //     if(JSON.parse(localStorage.getItem("User")).some((obj) => {
-    //         obj.email == JSON.parse(localStorage.getItem("currentUser")).email
-    //     })){
-    //         window.location.href = "main.html"
-    //     }else{
-    //         alert("Вы ввели неправильный логин и пароль")
-    //         //localStorage.clear("currentUser")
-    //     }
-    // }else{
-    //     localStorage.clear("currentUser")
-    //     sessionStorage.setItem("currentUser", JSON.stringify(currentUser))
-    //     if(JSON.parse(localStorage.getItem("User")).some((obj) => {
-    //         obj.email === JSON.parse(sessionStorage.getItem("currentUser")).email
-    //     })){
-    //         window.location.href = "main.html"
-    //     }else{
-    //         alert("Вы ввели неправильный логин и пароль")
-    //         sessionStorage.clear("currentUser")
-    //     }
-    // }
+    }else{
+        localStorage.removeItem("currentUser")
+        if(users.some(obj => 
+            obj.email === currentUser.email
+        )){
+            sessionStorage.setItem("currentUser", JSON.stringify(currentUser))
+            window.location.href = "main.html"
+        }else{
+            alert("Вы ввели неправильный логин и пароль")
+        }
+    }
 
 
 }
-//Проверка на автозаполнение после remember
-if(localStorage.getItem("currentUser") !== null){
-    logEmail.value = JSON.parse(localStorage.getItem("currentUser")).email
-    logPassword.value = JSON.parse(localStorage.getItem("currentUser")).password
+
+//Проверка на автозаполнение
+function isremembered(){
+    if(localStorage.getItem("currentUser") !== null){
+        logEmail.value = JSON.parse(localStorage.getItem("currentUser")).email
+        logPassword.value = JSON.parse(localStorage.getItem("currentUser")).password
+    }
+}
+if(logEmail){
+    isremembered()
 }
 
-//Таблица вроде норм но нужно добавить стили и убрать колонкку пароль
+
+
+//Главная страница
+let logoutbutt = document.querySelector("#logoutbutton")
+let deluser = document.querySelector("#delbutt")
+
+if(logoutbutt){
+    logoutbutt.addEventListener("click", logout)
+}
+
+if(deluser){
+    deluser.addEventListener("click", deleteuser)
+}
+
+
+//Добавить функцию удаления персонажа
+function deletuser(){
+    let users = JSON.parse(localStorage.getItem("User"))
+
+
+}
+//функция логаута из системы
+function logout(){
+    sessionStorage.removeItem("currentUser")
+    window.location.href = "index.html"
+}
+
 
