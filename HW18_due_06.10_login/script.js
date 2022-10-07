@@ -27,25 +27,47 @@ function regUser(){
     let newUser = new User(regEmail.value,regPassword.value,regName.value,regSurname.value,regAge.value)
     let values = []
     let users = JSON.parse(localStorage.getItem("User"))
-    if(localStorage.getItem("User") === null){
-        values.push(newUser)
-        localStorage.setItem("User", JSON.stringify(values))
-        window.location.href = "index.html"
-    }else{
-        if(users.some(obj =>
-            obj.email === newUser.email
-        )){
-            alert("Пользователь с таким логином уже есть")
-        }else{
-            values = JSON.parse(localStorage.getItem("User"))
+    if(checkData(newUser)){
+        if(localStorage.getItem("User") === null){
             values.push(newUser)
             localStorage.setItem("User", JSON.stringify(values))
             window.location.href = "index.html"
-        }
-
-    }
+        }else{
+            if(users.some(obj =>
+                obj.email === newUser.email
+            )){
+                alert("Пользователь с таким логином уже есть")
+            }else{
+                values = JSON.parse(localStorage.getItem("User"))
+                values.push(newUser)
+                localStorage.setItem("User", JSON.stringify(values))
+                window.location.href = "index.html"
+            }
     
+        }
+    }  
 }
+
+function checkData(user) {
+    if (!validateEmail(user.email)) {
+        alert("Incorrect email!")
+        return false;
+    } else if (user.name.length < 1 || user.surname.length < 1
+    || user.password.length < 1 || user.age.length < 1) {
+        alert('Complete all data!')
+        return false;
+    } else {
+        return true;
+    }   
+}
+
+const validateEmail = (email) => {
+    return String(email)
+        .toLowerCase()
+        .match(
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        )};
+
 //Логин
 const logEmail = document.querySelector("#loginEmail")
 const logPassword = document.querySelector("#loginPassword")
@@ -111,20 +133,34 @@ if(logoutbutt){
 }
 
 if(deluser){
-    deluser.addEventListener("click", deleteuser)
+    deluser.addEventListener("click", deletuser)
 }
 
 
 //Добавить функцию удаления персонажа
 function deletuser(){
     let users = JSON.parse(localStorage.getItem("User"))
-
-
+    let currentUser = JSON.parse(localStorage.getItem("currentUser"))
+    console.log('asdasd')
+    localStorage.setItem("User", JSON.stringify(
+        users.filter(user => user.email != currentUser.email)
+    ))
+    logout()
 }
+
 //функция логаута из системы
 function logout(){
     sessionStorage.removeItem("currentUser")
     window.location.href = "index.html"
 }
 
-
+getCurrentUser()
+function getCurrentUser() {
+    let currentUser = JSON.parse(localStorage.getItem("currentUser")) 
+    let nameEl = document.querySelector("#userName")
+    nameEl.textContent = currentUser.name
+    let surnameEl = document.querySelector("#userSurname")
+    surnameEl.textContent = currentUser.surname
+    let ageEl = document.querySelector("#userAge")
+    ageEl.textContent = currentUser.age      
+}
