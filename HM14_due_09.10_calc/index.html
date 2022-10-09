@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Calc</title>
+</head>
+<body>
+<!-- делаем калькулятор -->
+    <div class="calcBody">
+        <div class="screenarea">
+            <input type="text" id="screen" disabled>
+        </div>
+        <div class="buttonsarea">
+            <div class="numbersarea">
+                <input type="button" value="1" class="calcbutton" onclick="addnumber(1)">
+                <input type="button" value="2" class="calcbutton" onclick="addnumber(2)">
+                <input type="button" value="3" class="calcbutton" onclick="addnumber(3)">
+                <input type="button" value="4" class="calcbutton" onclick="addnumber(4)">
+                <input type="button" value="5" class="calcbutton" onclick="addnumber(5)">
+                <input type="button" value="6" class="calcbutton" onclick="addnumber(6)">
+                <input type="button" value="7" class="calcbutton" onclick="addnumber(7)">
+                <input type="button" value="8" class="calcbutton" onclick="addnumber(8)">
+                <input type="button" value="9" class="calcbutton" onclick="addnumber(9)">
+                <input type="button" value="0" class="calcbutton" onclick="addnumber(0)">
+                <input type="button" value="=" class="calcbutton" onclick="results()">
+                <input type="button" value="CE" class="calcbutton Clear" onclick="clearall()">
+            </div>
+            <div class="operarea">
+                <input type="button" value="+" class="calcbutton" onclick="oper(this.value)">
+                <input type="button" value="-" class="calcbutton" onclick="oper(this.value)">
+                <input type="button" value="*" class="calcbutton" onclick="oper(this.value)">
+                <input type="button" value="/" class="calcbutton" onclick="oper(this.value)">
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

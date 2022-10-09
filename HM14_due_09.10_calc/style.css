@@ -1,0 +1,27 @@
+.calcBody{
+    padding: 10px;
+    box-sizing: border-box;
+    width: 185px;
+    height: 220px;
+    border: 2px solid black;
+}
+
+.buttonsarea{
+    display: flex;
+}
+
+.numbersarea{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-auto-rows: 40px;
+}
+
+.calcbutton{
+    width: 40px;
+    height: 40px;
+}
+
+#screen{
+    width: 150px;
+    margin-bottom: 10px;
+}
