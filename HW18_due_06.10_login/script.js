@@ -184,6 +184,7 @@ function logout(){
 
 
 //Таблица с пользователями
+let table = document.querySelector("#userTable")
 function getallusers(){
     let allusers = JSON.parse(localStorage.getItem("User"), function(key,value){
         if(key === "password") return undefined
@@ -191,10 +192,10 @@ function getallusers(){
     })
     let currentUser = JSON.parse(localStorage.getItem("currentUser"));
     let otherUsers = allusers.filter(user => user.email !== currentUser.email);
-    let table = document.querySelector("#userTable")
+
     otherUsers.forEach((element, index) => {
         table.innerHTML +=`
-        <tr>
+        <tr id="${index}">
             <td>${index+1}</td>
             <td>${element.email}</td>
             <td>${element.name}</td>
@@ -204,6 +205,7 @@ function getallusers(){
     });
 
 }
+
 getallusers();
 
 
@@ -212,9 +214,29 @@ searchuser.addEventListener("input", filteruser)
 
 function filteruser(){
     let username = searchuser.value
+    let regex = new RegExp(username, "i")
     if(searchuser.value === ''){
+        table.innerHTML = ""
         getallusers()
     }else{
-        let searched
+        table.innerHTML = ""
+        let allusers = JSON.parse(localStorage.getItem("User"), function(key,value){
+            if(key === "password") return undefined
+            return value
+        })
+        let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        let otherUsers = allusers.filter(user => user.email !== currentUser.email);
+        let youruser = otherUsers.filter(user => regex.test(user.name) || regex.test(user.surname))
+        youruser.forEach((element, index) => {
+            table.innerHTML +=`
+            <tr>
+                <td>${index+1}</td>
+                <td>${element.email}</td>
+                <td>${element.name}</td>
+                <td>${element.surname}</td>
+                <td>${element.age}</td>
+            </tr>`
+        });
     }
 }
+
