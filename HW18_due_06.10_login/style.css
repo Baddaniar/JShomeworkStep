@@ -37,3 +37,7 @@ input{
 #signinbutton{
     width: 100px;
 }
+
+table, th, td{
+    border: 1 px solid grey;
+}

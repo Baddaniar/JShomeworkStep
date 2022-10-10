@@ -171,13 +171,50 @@ function logout(){
     window.location.href = "index.html"
 }
 
-getCurrentUser()
-function getCurrentUser() {
-    let currentUser = JSON.parse(localStorage.getItem("currentUser")) 
-    let nameEl = document.querySelector("#userName")
-    nameEl.textContent = currentUser.name
-    let surnameEl = document.querySelector("#userSurname")
-    surnameEl.textContent = currentUser.surname
-    let ageEl = document.querySelector("#userAge")
-    ageEl.textContent = currentUser.age      
+// getCurrentUser()
+// function getCurrentUser() {
+//     let currentUser = JSON.parse(localStorage.getItem("currentUser")) 
+//     let nameEl = document.querySelector("#userName")
+//     nameEl.textContent = currentUser.name
+//     let surnameEl = document.querySelector("#userSurname")
+//     surnameEl.textContent = currentUser.surname
+//     let ageEl = document.querySelector("#userAge")
+//     ageEl.textContent = currentUser.age      
+// }
+
+
+//Таблица с пользователями
+function getallusers(){
+    let allusers = JSON.parse(localStorage.getItem("User"), function(key,value){
+        if(key === "password") return undefined
+        return value
+    })
+    let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    let otherUsers = allusers.filter(user => user.email !== currentUser.email);
+    let table = document.querySelector("#userTable")
+    otherUsers.forEach((element, index) => {
+        table.innerHTML +=`
+        <tr>
+            <td>${index+1}</td>
+            <td>${element.email}</td>
+            <td>${element.name}</td>
+            <td>${element.surname}</td>
+            <td>${element.age}</td>
+        </tr>`
+    });
+
+}
+getallusers();
+
+
+const searchuser = document.querySelector("#searchUser")
+searchuser.addEventListener("input", filteruser)
+
+function filteruser(){
+    let username = searchuser.value
+    if(searchuser.value === ''){
+        getallusers()
+    }else{
+        let searched
+    }
 }
