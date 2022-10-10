@@ -49,8 +49,8 @@ function regUser(){
 }
 
 function checkData(user) {
-    if (!validateEmail(user.email)) {
-        alert("Incorrect email!")
+    if (!validateEmail(user.email)||!validateAge(user.age)||validatePassword(user.password)) {
+        alert("Incorrect Data!")
         return false;
     } else if (user.name.length < 1 || user.surname.length < 1
     || user.password.length < 1 || user.age.length < 1) {
@@ -61,12 +61,29 @@ function checkData(user) {
     }   
 }
 
+
+//Валидация данных пароля почты и возраста
 const validateEmail = (email) => {
     return String(email)
         .toLowerCase()
         .match(
             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         )};
+
+const validateAge = (age) => {
+    return age.match(
+            /^[1-9][0-9]$|^[1-9]$|^1[0-9][0-9]$/
+        )};
+
+const validatePassword = (password) => {
+    if(password.length <= 8){
+        return String(password)
+        .match(
+        /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[*/$!]).{8,}$/
+        )
+    }else{
+        return false
+    }};
 
 //Логин
 const logEmail = document.querySelector("#loginEmail")

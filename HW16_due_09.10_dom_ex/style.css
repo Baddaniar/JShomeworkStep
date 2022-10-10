@@ -1,0 +1,73 @@
+.modal{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modalcontent{
+    background-color: rgb(126, 220, 220);
+    margin: 20% auto;
+    padding: 20px;
+    width: 20%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.fourthex{
+    display: flex;
+}
+
+.lingtcontainer{
+    display: flex;
+    width: 180px;
+    height: 70px;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#red, #green, #yellow{
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: grey;
+}
+
+.tooltip {
+    position: fixed;
+    padding: 10px 20px;
+    text-align: center;
+    font: italic 14px/1.3 sans-serif;
+    color: white;
+    background: rgb(132, 9, 176);
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, .3);
+}
+
+
+li{
+    width: 200px;
+}
+.chosen{
+    background-color: rgb(216, 175, 124);
+}
+
+.field{
+    width: 600px;
+    height: 390px;
+    background-image: url("field.jpg");
+}
+
+.ball{
+    background-color: blue;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+
+}
