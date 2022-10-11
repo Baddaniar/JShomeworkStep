@@ -1,0 +1,42 @@
+.colorblock{
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.blockheader{
+    height: 34px;
+    display: flex;
+    justify-content: space-between;
+}
+
+input{
+    width: 200px;
+}
+
+#saveButton{
+    width: 208px;
+    margin-top: 10px;
+}
+
+#typeSelection{
+    width: 208px;
+}
+
+.allcolors{
+    width: 700px;
+    display: grid;
+    row-gap: 50px;
+    grid-template-columns: auto auto auto;
+    grid-auto-rows: 150px;
+    margin: 0 auto;
+}
+
+.colorBox{
+    border: 2px solid grey;
+    width: 200px;
+    height: 150px;
+}
