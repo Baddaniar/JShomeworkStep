@@ -110,6 +110,7 @@ function checkUser(){
         )){
             localStorage.setItem("currentUser", JSON.stringify(currentUser))
             window.location.href = "main.html"
+            getCurrentUser()
         }else{
             alert("Вы ввели неправильный логин и пароль")
         }
@@ -120,6 +121,7 @@ function checkUser(){
         )){
             sessionStorage.setItem("currentUser", JSON.stringify(currentUser))
             window.location.href = "main.html"
+            getCurrentUser()
         }else{
             alert("Вы ввели неправильный логин и пароль")
         }
@@ -144,6 +146,8 @@ if(logEmail){
 //Главная страница
 let logoutbutt = document.querySelector("#logoutbutton")
 let deluser = document.querySelector("#delbutt")
+let edituser = document.querySelector("#editbutt")
+//Сделать корректировку польхзователя. наверное через модалку хз
 
 if(logoutbutt){
     logoutbutt.addEventListener("click", logout)
@@ -170,17 +174,30 @@ function logout(){
     sessionStorage.removeItem("currentUser")
     window.location.href = "index.html"
 }
+let nameEl = document.querySelector("#userName")
+let surnameEl = document.querySelector("#userSurname")
+let ageEl = document.querySelector("#userAge")
 
-// getCurrentUser()
-// function getCurrentUser() {
-//     let currentUser = JSON.parse(localStorage.getItem("currentUser")) 
-//     let nameEl = document.querySelector("#userName")
-//     nameEl.textContent = currentUser.name
-//     let surnameEl = document.querySelector("#userSurname")
-//     surnameEl.textContent = currentUser.surname
-//     let ageEl = document.querySelector("#userAge")
-//     ageEl.textContent = currentUser.age      
-// }
+getCurrentUser()
+function getCurrentUser() {
+    if(localStorage.getItem("currentUser") !== null){
+        let allusers = JSON.parse(localStorage.getItem("User"))
+        let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        let fulluser = allusers.filter(user => user.email === currentUser.email);
+
+        nameEl.textContent = fulluser[0].name
+        surnameEl.textContent = fulluser[0].surname
+        ageEl.textContent = fulluser[0].age   
+    }else{
+        let allusers = JSON.parse(localStorage.getItem("User"))
+        let currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+        let fulluser = allusers.filter(user => user.email === currentUser.email);
+
+        nameEl.textContent = fulluser[0].name
+        surnameEl.textContent = fulluser[0].surname
+        ageEl.textContent = fulluser[0].age   
+    }
+}
 
 
 //Таблица с пользователями

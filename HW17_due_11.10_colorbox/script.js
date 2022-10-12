@@ -80,7 +80,7 @@ const validatecolorname = (color) => {
         .match(
             /[a-zA-Z]/
         )};
-//Добить всю проверку!
+//
 const validatetype = (type) =>{
     if(type.value = "RGB"){
         return String(type)
@@ -89,11 +89,11 @@ const validatetype = (type) =>{
     )}else if(type.value = "RGBA"){
         return String(type)
         .match(
-            /^(\d{1,3}), (\d{1,3}), (\d{1,3}), \d\.\d$/)
-    }else{
+            /^(\d{1,3}), (\d{1,3}), (\d{1,3}), (\S{1,3})$/)
+    }else{ 
         return String(type)
         .match(
-            /^#[0-9a-f]{3,6}$/i)
+            /^#([0-9a-f]{3,6})$/)
     }
 }
 

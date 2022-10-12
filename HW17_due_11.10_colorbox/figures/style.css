@@ -1,0 +1,115 @@
+header{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid grey;
+}
+
+p{
+    font-size: 20px;
+}
+
+form{
+    padding-left: 50px;
+    display: flex;
+    width: 50%;
+    align-items: center;
+}
+
+.box{
+    width: 50px;
+    height: 50px;
+    background-color: grey;
+}
+
+.circle{
+    width: 50px;
+    height: 50px;
+    background-color: grey;
+    border-radius: 50%;
+}
+
+.romb{
+    width: 0; 
+    height: 0;
+    border: 25px solid transparent;
+    border-bottom-color: grey;
+    position: relative; 
+    top: -25px;
+}
+
+.romb:after {
+    content: "";
+    width: 0; 
+    height: 0;
+    position: absolute; 
+    left: -25px; 
+    top: 25px;
+    border: 25px solid transparent;
+    border-top-color: grey;
+}
+
+.triangle{
+    width: 0; 
+    height: 0; 
+    border-bottom: 50px solid grey;
+    border-right: 50px solid transparent;
+}
+
+.colors{
+    display: grid;
+    grid-template-columns: repeat(5, 25px);
+    grid-template-rows: 25px 25px;
+}
+
+#color1{
+    width: 25px;
+    height: 25px;
+    background-color: rgb(136, 36, 36);
+}
+#color2{
+    width: 25px;
+    height: 25px;
+    background-color: black;
+}
+#color3{
+    width: 25px;
+    height: 25px;
+    background-color: red;
+}
+#color4{
+    width: 25px;
+    height: 25px;
+    background-color: blue;
+}
+#color5{
+    width: 25px;
+    height: 25px;
+    background-color: grey;
+}
+#color6{
+    width: 25px;
+    height: 25px;
+    background-color: green;
+}
+#color7{
+    width: 25px;
+    height: 25px;
+    background-color: yellow;
+}
+#color8{
+    width: 25px;
+    height: 25px;
+    background-color: pink;
+}
+#color9{
+    width: 25px;
+    height: 25px;
+    background-color: violet;
+}
+#color10{
+    width: 25px;
+    height: 25px;
+    background-color: orange;
+}
