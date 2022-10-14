@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax</title>
+</head>
+<body>
+    <div class="colore">
+
+    </div>
+    <div class="color-space"></div>
+    <script>
+        let colors = []
+        getColors()
+
+        function getColors(){
+            let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                    JSON.parse(xhr.response).data.forEach(element => {
+                        colors.push(element)
+                    });
+                    makeColorBlocks()
+                }
+            };
+            xhr.open("GET", "https://reqres.in/api/unknown", false);
+            xhr.send();
+        }
+
+        function makeColorBlocks(){
+            let elColors = document.querySelector(".colore");
+            colors.forEach(element => {
+                elColors.innerHTML +=`
+                <div class="color" style="background-color:${element.color}" onclick="changeColor(event)"></div>`
+            }) 
+        }
+
+        function changeColor(color){
+            let elColorSpace = document.querySelector(".color-space");
+            elColorSpace.style.backgroundColor = event.path[0].style.backgroundColor
+        }
+    </script>
+</body>
+<style>
+    .colore{
+        display: flex;
+    }
+    .color{
+        width: 50px;
+        height: 50px;
+    }
+    .color-space{
+        width: 500px;
+        height: 500px;
+        border: 2px solid grey;
+        background-color: #655865;
+    }
+</style>
+</html>
