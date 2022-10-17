@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" id="openmodal" value="Add item" onclick="openModalAdd()">
+    <div id="myModal" >
+        <div class="modalcontent">
+            <div class="inputs">
+                <p>Название</p>
+                <input type="text" name="" id="newtitle">
+                <p>Картинка</p>
+                <input type="text" name="" id="newImage">
+                <p>Цена</p>
+                <input type="text" name="" id="newprice">
+                <p>Описание</p>
+                <input type="text" name="" id="desc">
+            </div>
+            <div class="buttons">
+                <input type="button" id="saveItem" value="Save item" onclick="addItem()">
+                <input type="button" id="closemodal" value="Close modal" onclick="closeModal()">
+            </div>
+
+        </div>
+    </div>
+
+    <div class="flexcard">
+
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
