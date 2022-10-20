@@ -83,17 +83,15 @@ const validatecolorname = (color) => {
 //
 const validatetype = (type,code) =>{
     if(type = "RGB"){
-        return String(code)
-        .match(
-            /^(\d{1,3}), (\d{1,3}), (\d{1,3})$/
-    )}else if(type = "RGBA"){
-        return String(code)
-        .match(
-            /^(\d{1,3}), (\d{1,3}), (\d{1,3}), (\S{1,3})$/)
+        let reg = /^(\d{1,3}), (\d{1,3}), (\d{1,3})$/
+            return reg.test(code)
+
+        }else if(type = "RGBA"){
+            let reg = /^(\d{1,3}), (\d{1,3}), (\d{1,3}), (\S{1,3})$/
+            return reg.test(code)
     }else{ 
-        return String(code)
-        .match(
-            /^#([0-9a-f]{3,6})$/)
+        let reg = /^#([0-9a-f]{3,6})$/
+        return reg.test(code)
     }
 }
 
