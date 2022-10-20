@@ -6,7 +6,7 @@ const regPassword = document.querySelector("#regPassword")
 const regName = document.querySelector("#regName")
 const regSurname = document.querySelector("#regSurname")
 const regAge = document.querySelector("#regAge")
-
+//Нужно добавить здесь еще пару ключей для цвет буков и цвет фона
 class User{
     constructor(email,password,name,surname,age){
         this.email = email
