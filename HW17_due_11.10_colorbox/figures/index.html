@@ -73,7 +73,7 @@ function chosefigure(){
 
 function draw(){
     chosefigure()
-    main.innerHTML= `<div class="${figure}" onclick="event.stopPropagation()" style="position: absolute; background-color:${chosencolor}; top: ${event.clientY-30}px; left:${event.clientX-30}px"></div>`
+    main.innerHTML += `<div class="${figure}" onclick="event.stopPropagation()" style="position: absolute; background-color:${chosencolor}; top: ${event.clientY-30}px; left:${event.clientX-30}px"></div>`
 }
 function changeColor(){
     chosencolor = event.path[0].style.backgroundColor
