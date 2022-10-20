@@ -12,39 +12,71 @@
         <p>Paint</p>
         <form>
                     <input type="radio" id="boxChoise"
-                    name="contact">
+                    name="contact" onclick="chosefigure()">
                     <div class="box"></div>
                 
                     <input type="radio" id="circleChoise"
-                    name="contact">
+                    name="contact" onclick="chosefigure()">
                     <div class="circle"></div>
                 
                     <input type="radio" id="romchoise"
-                    name="contact">
+                    name="contact" onclick="chosefigure()">
                     <div class="romb"></div>
 
                     <input type="radio" id="triangle"
-                    name="contact">
+                    name="contact" onclick="chosefigure()">
                     <div class="triangle"></div>
 
 
         </form>
         <div class="colors">
-            <div id="color1"></div>
-            <div id="color2"></div>
-            <div id="color3"></div>
-            <div id="color4"></div>
-            <div id="color5"></div>
-            <div id="color6"></div>
-            <div id="color7"></div>
-            <div id="color8"></div>
-            <div id="color9"></div>
-            <div id="color10"></div>
+            <div style="background-color: red;" class="color" onclick="changeColor()"></div>
+            <div style="background-color: blue;" class="color" onclick="changeColor()"></div>
+            <div style="background-color: green;" class="color" onclick="changeColor()"></div>
+            <div style="background-color: firebrick;" class="color" onclick="changeColor()"></div>
+            <div style="background-color: teal;" class="color" onclick="changeColor()"></div>
+            <div style="background-color: navy;" class="color" onclick="changeColor()"></div>
+            <div style="background-color: aqua;" class="color" onclick="changeColor()"></div>
+            <div style="background-color: rosybrown;" class="color" onclick="changeColor()"></div>
+            <div style="background-color: blueviolet;" class="color" onclick="changeColor()"></div>
+            <div style="background-color: brown;" class="color" onclick="changeColor()"></div>
+
         </div>
 
     </header>
-    <main>
+    <main onclick="draw(event)">
 
     </main>
 </body>
+<script>
+    //figures
+const box = document.querySelector("#boxChoise")
+const circle = document.querySelector("#circleChoise")
+const romb = document.querySelector("#romchoise")
+const triangle = document.querySelector("#triangle")
+const main = document.querySelector("main")
+
+
+let chosencolor,figure;
+
+function chosefigure(){
+    if(box.checked){
+        figure = "box"
+    }else if(circle.checked){
+        figure = "circle"
+    }else if(romb.checked){
+        figure = "romb"
+    }else if(triangle.checked){
+        figure = "triangle"
+    }
+}
+
+function draw(){
+    chosefigure()
+    main.innerHTML= `<div class="${figure}" onclick="event.stopPropagation()" style="position: absolute; background-color:${chosencolor}; top: ${event.clientY-30}px; left:${event.clientX-30}px"></div>`
+}
+function changeColor(){
+    chosencolor = event.path[0].style.backgroundColor
+}
+</script>
 </html>

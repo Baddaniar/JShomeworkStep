@@ -67,7 +67,7 @@ function checkData(mycolor) {
     if(!validatecolorname(mycolor.color)){
         colorerror.innerText = "color can contain only letters"
         return false
-    }else if(!validatetype(mycolor.code)){
+    }else if(!validatetype(mycolor.type,mycolor.code)){
         codeerror.innerText = "Wrong pattern"
         return false
     }else{
@@ -81,17 +81,17 @@ const validatecolorname = (color) => {
             /[a-zA-Z]/
         )};
 //
-const validatetype = (type) =>{
-    if(type.value = "RGB"){
-        return String(type)
+const validatetype = (type,code) =>{
+    if(type = "RGB"){
+        return String(code)
         .match(
             /^(\d{1,3}), (\d{1,3}), (\d{1,3})$/
-    )}else if(type.value = "RGBA"){
-        return String(type)
+    )}else if(type = "RGBA"){
+        return String(code)
         .match(
             /^(\d{1,3}), (\d{1,3}), (\d{1,3}), (\S{1,3})$/)
     }else{ 
-        return String(type)
+        return String(code)
         .match(
             /^#([0-9a-f]{3,6})$/)
     }
