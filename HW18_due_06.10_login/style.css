@@ -7,6 +7,7 @@
     align-items: center;
 }
 
+
 .boxname{
     margin-bottom: 30px;
     font-size: 20px;
@@ -40,4 +41,32 @@ input{
 
 table, th, td{
     border: 1px solid black;
+}
+
+.info{
+    padding: 20px;
+    width: 750px;
+    height: 300px;
+    border: 2px solid black;
+}
+
+.infoblock{
+    display: flex;
+}
+
+.colors{
+    width: 200px;
+    height: 200px;
+    border: 2px solid #000000;
+    margin-left: 20px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+select{
+    width: 180px;
+}
+
+#changecolors{
+    width: 180px;
 }

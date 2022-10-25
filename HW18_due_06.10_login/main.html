@@ -8,17 +8,31 @@
     <title>Главная страницы</title>
 </head>
 <body>
-    <!-- Поменять наименование с строки на импуты -->
-    <p>Name:</p>
-    <input type="text" id="userName">
-    <p>Surname:</p>
-    <input type="text" id="userSurname">
-    <p>Age:</p>
-    <input type="text" id="userAge">
-    <div class="main buttons">
-        <input type="button" value="Log out" id="logoutbutton">
-        <input type="button" value="Edit acc" id="editbutt">
-        <input type="button" value="Delete acc" id="delbutt">
+    <div class="infoblock">
+        <div class="info">
+            <p>Name:</p>
+            <input type="text" id="userName">
+            <p>Surname:</p>
+            <input type="text" id="userSurname">
+            <p>Age:</p>
+            <input type="text" id="userAge">
+            <div class="main buttons">
+                <input type="button" value="Log out" id="logoutbutton">
+                <input type="button" value="Edit acc" id="editbutt">
+                <input type="button" value="Delete acc" id="delbutt">
+            </div>
+        </div>
+        <div class="colors">
+            <label for="fontcolor">Font color</label>
+            <select name="fontcolor" id="fontcolor">
+                <option value="black">default</option>
+            </select>
+            <label for="backcolor">Font color</label>
+            <select name="backcolor" id="backcolor">
+                <option value="white">default</option>
+            </select>
+            <input type="button" value="Change colors" id="changecolors">
+        </div>
     </div>
     <div>    
         <input type="text" name="" id="searchUser" placeholder="Enter name">

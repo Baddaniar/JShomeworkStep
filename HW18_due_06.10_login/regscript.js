@@ -14,6 +14,8 @@ class User{
         this.name = name
         this.surname = surname
         this.age = age
+        this.fontcolor = "black"
+        this.backcolor = "white"
     }
 }
 
