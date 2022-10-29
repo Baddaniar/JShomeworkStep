@@ -1,0 +1,21 @@
+.images{
+    display: flex;
+}
+
+.image{
+    margin-left: 10px;
+    width: 200px;
+    height: 200px;
+    border: 2px solid black;
+}
+
+.image img{
+    max-width: 200px;
+    max-height: 200px;
+}
+
+.imageplace{
+    width: 500px;
+    height: 500px;
+    border: 2px solid red;
+}
